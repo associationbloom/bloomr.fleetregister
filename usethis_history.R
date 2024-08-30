@@ -1,0 +1,5 @@
+usethis::use_package('RPostgres')
+usethis::use_package('DBI')
+usethis::use_author("Marthe", "Vienne", email = "marthevienne@bloomassociation.org", role = c("aut", "cre"))
+usethis::use_mit_license()
+usethis::use_build_ignore("usethis_history.R")
