@@ -1,13 +1,12 @@
 #' Get information associated to a vessel ID
 #'
 #' @param id A vessel identifier (CFR, MMSI, UVI, IRCS, external marking or registration number)
-#' @param type identifier type (cfr, mmsi, uvi, ircs, external_marking, registration_number)
-
+#' @param type identifier type, either "cfr", "mmsi", "uvi", "ircs", "external_marking" or "registration_number"
+#'
 #' @return The function returns a list containing dataframes with the historical information associated to a vessel ID
 #' @importFrom RPostgres Postgres
 #' @importFrom DBI dbConnect dbGetQuery
 #' @import dplyr
-
 #' @export
 
 get_vessel <- function(id = 'FRA000669307', type = 'cfr') {
@@ -128,21 +127,6 @@ get_vessel <- function(id = 'FRA000669307', type = 'cfr') {
                                    WHERE cfr_id = '%s'
                                 ORDER BY start_date DESC", cfr_id)) %>% rename("value" = type)
 
-
-    # res_cfr[['vessel_type']] =  dbGetQuery(conn,
-    #                                        sprintf("SELECT type, subcategory, abbreviation, level1_category, level1_abbreviation, start_date, end_date FROM vessel_types vt
-    #                                                LEFT JOIN vessel_isscfv vi
-    #                                                ON vt.type = vi.abbreviation
-    #                                                OR vt.type = vi.level1_abbreviation
-    #                                                WHERE cfr_id = '%s'
-    #                                                ORDER BY start_date DESC", cfr_id
-    #                                                )) %>%
-    #   dplyr::mutate(value = case_when(type == abbreviation ~ paste0(type, ' - ', subcategory),
-    #                                   type == level1_abbreviation ~ paste0(type, ' - ', level1_category),
-    #                                   .default = type)
-      # ) %>%
-      # dplyr::select()
-
     res_cfr[['dimensions']] =  dbGetQuery(conn,
                                 sprintf("SELECT length, type, start_date, end_date FROM dimensions
                                    WHERE cfr_id = '%s'
@@ -173,14 +157,6 @@ get_vessel <- function(id = 'FRA000669307', type = 'cfr') {
                                             sprintf("SELECT fg.gear, fg.order, fg.start_date, fg.end_date FROM fishing_gears AS fg
                                    WHERE cfr_id = '%s'
                                 ORDER BY fg.order ASC, start_date DESC", cfr_id)) %>% rename("value" = gear)
-
-
-    # res_cfr[["fishing_gear"]] =  dbGetQuery(conn,
-    #                                         sprintf("SELECT gear, fg.order, start_date, end_date, names->>'en' AS name
-    #                                         FROM fishing_gears fg LEFT JOIN gear_isscfg gi ON fg.gear = gi.abbreviation
-    #                                         WHERE cfr_id = '%s'", cfr_id)) %>%
-    #   dplyr::mutate(value = paste0(gear, " - ", name)) %>%
-    #   dplyr::select(value, order, start_date, end_date)
 
 
     res_cfr[['segment']] =  dbGetQuery(conn,

@@ -9,10 +9,10 @@ display_vessel(id = "FRA000669307", type = "cfr")
 \arguments{
 \item{id}{A vessel identifier (CFR, MMSI, UVI, IRCS, external marking or registration number)}
 
-\item{type}{identifier type (cfr, mmsi, uvi, ircs, external_marking, registration_number)}
+\item{type}{identifier type, either "cfr", "mmsi", "uvi", "ircs", "external_marking" or "registration_number"}
 }
 \value{
-The function prints tables, one per CFR associated to
+The function prints tables, one per CFR associated to a vessel ID
 }
 \description{
 Display information associated to a vessel ID in pretty tables

@@ -1,15 +1,14 @@
 #' Display information associated to a vessel ID in pretty tables
 #'
 #' @param id A vessel identifier (CFR, MMSI, UVI, IRCS, external marking or registration number)
-#' @param type identifier type (cfr, mmsi, uvi, ircs, external_marking, registration_number)
+#' @param type identifier type, either "cfr", "mmsi", "uvi", "ircs", "external_marking" or "registration_number"
 #' @importFrom kableExtra kbl kable_styling collapse_rows
 #' @import dplyr
 #' @import purrr
 #' @importFrom stringr str_to_sentence
 #' @importFrom readxl read_excel
 
-#' @return The function prints tables, one per CFR associated to
-
+#' @return The function prints tables, one per CFR associated to a vessel ID
 #' @export
 
 display_vessel <- function(id = 'FRA000669307', type = 'cfr') {
