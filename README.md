@@ -1,5 +1,6 @@
 # Installation
-A VENIR
+`install.packages("bloomr.fleetregister")`
+
 
 # Prérequis
 
