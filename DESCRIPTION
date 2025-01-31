@@ -1,6 +1,6 @@
 Package: bloomr.fleetregister
-Title: Access data from BLOOM fleet register (derived from the European fleet register)
-Version: 0.0.0.9000
+Title: Access Data from BLOOM Fleet Register
+Version: 0.0.1
 Authors@R: 
     person("Marthe", "Vienne", , "marthevienne@bloomassociation.org", role = c("aut", "cre"))
 Description: Access data from BLOOM fleet register (derived from the European fleet register).
@@ -9,7 +9,14 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
     DBI,
-    RPostgres
+    RPostgres,
+    dplyr,
+    kableExtra,
+    purrr,
+    readxl,
+    stringr,
+    tibble,
+    tidyr
 License: MIT + file LICENSE
 Suggests: 
     knitr,

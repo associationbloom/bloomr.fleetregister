@@ -9,7 +9,6 @@
 #' @importFrom DBI dbConnect dbGetQuery
 #' @export
 
-
 get_events <- function(country_iso3 = NULL,
                        start_date = "1980-01-01",
                        end_date = Sys.Date()) {
