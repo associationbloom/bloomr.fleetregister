@@ -5,7 +5,7 @@
 
 Avant de commencer à utiliser le package **bloomr.fleetregister**, il faut déclarer les variables d'environnement pour vous connecter à la base de données.
 
-Pour cela, dans la console R, lancer la commande `usethis::edit_r_environ()` et renseigner les variables communiquées dans .Renviron :
+Pour cela, dans la console R, lancez la commande `usethis::edit_r_environ()` et renseignez les variables communiquées dans .Renviron :
 
 `POSTGRES_DB="????"`  
 `POSTGRES_USER="????"`  
@@ -13,6 +13,6 @@ Pour cela, dans la console R, lancer la commande `usethis::edit_r_environ()` et 
 `POSTGRES_PORT=XXXX`  
 `POSTGRES_HOSTNAME="????"`
 
-Sauvegarder et redémarrer R pour appliquer les changements.
+Sauvegardez et redémarrez R pour appliquer les changements avec `.rs.restartR()`.
 
 Vous pouvez maintenant utiliser le package ! Enjoy :)
