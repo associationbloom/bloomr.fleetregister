@@ -1,6 +1,5 @@
 # Installation
-`install.packages("bloomr.fleetregister")`
-
+`remotes::install_github("associationbloom/bloomr.fleetregister")`
 
 # Prérequis
 
