@@ -5,7 +5,7 @@
 #'
 #' @return The function returns a list containing dataframes with the historical information associated to a vessel ID
 #' @importFrom RPostgres Postgres
-#' @importFrom DBI dbConnect dbGetQuery
+#' @importFrom DBI dbConnect dbGetQuery dbDisconnect
 #' @import dplyr
 #' @export
 
@@ -196,6 +196,8 @@ get_vessel <- function(id = 'FRA000669307', type = 'cfr') {
     res[[cfr[[1]]]] = res_cfr
 
   }
+
+  DBI::dbDisconnect(conn)
 
   return(res)
 }

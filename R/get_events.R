@@ -6,7 +6,7 @@
 #'
 #' @return The function returns a dataframe containing all the events saved by BLOOM
 #' @importFrom RPostgres Postgres
-#' @importFrom DBI dbConnect dbGetQuery
+#' @importFrom DBI dbConnect dbGetQuery dbDisconnect
 #' @export
 
 get_events <- function(country_iso3 = NULL,
@@ -51,5 +51,7 @@ get_events <- function(country_iso3 = NULL,
                                  AND event_end >= '%s'",
                                    end_date, start_date))
     }
+
+    DBI::dbDisconnect(conn)
     return(events)
 }

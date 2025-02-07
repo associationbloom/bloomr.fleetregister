@@ -107,6 +107,8 @@ get_fleet_repartition <- function(country_iso3 = NULL,
                                   ) AS foo)
                                 WHERE rn = 1", start_date, start_date, end_date, end_date, end_date, start_date, str))
 
+  DBI::dbDisconnect(conn)
+
   if (categorized) {
     gear_cleaned <- gear_codes %>%
       dplyr::mutate(category = dplyr::case_when(!is.na(SubCategory) ~ paste0(SubCategory),
