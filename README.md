@@ -13,6 +13,6 @@ Pour cela, dans la console R, lancez la commande `usethis::edit_r_environ()` et 
 `POSTGRES_PORT=XXXX`  
 `POSTGRES_HOSTNAME="????"`
 
-Sauvegardez et redémarrez l'IDE (éditeur de code) pour appliquer les changements (ex: Rstudio).
+Sauvegardez et redémarrez l'IDE (éditeur de code) pour appliquer les changements (ex : Rstudio).
 
 Vous pouvez maintenant utiliser le package ! Enjoy :)
