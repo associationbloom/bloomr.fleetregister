@@ -53,12 +53,19 @@ display_vessel <- function(id = 'FRA000669307', type = 'cfr') {
       dplyr::select(-EnDescription)
 
     # Segment code
-    info_list[['segment']] <- info_list[['segment']] %>%
+    countries = info_list[["country"]] %>% dplyr::rename("start_date_country" = start_date,
+                                                         "end_date_country" = end_date,
+                                                         "country" = value)
+
+    info_list[['segment']] <- info_list[['segment']] %>% dplyr::full_join(countries, by = join_by(
+      between(start_date,
+              start_date_country,
+              end_date_country))) %>%
       dplyr::left_join(segments_codes %>%
-                         dplyr::select(Code, EnDescription), by = c("value" = "Code")) %>%
-      dplyr::mutate(value = case_when(!is.na(EnDescription) ~ paste0(value, " - ", EnDescription),
+                         dplyr::select(Code, EnDescription, Country), by = join_by("value" == "Code", "country" == "Country")) %>%
+      dplyr::mutate(value = case_when(!is.na(EnDescription) ~ paste0(value, " - ", EnDescription, " - ", country),
                                       .default = value)) %>%
-      dplyr::select(-EnDescription)
+      dplyr::select(-c(EnDescription, start_date_country, end_date_country, country))
 
     # Event code
     info_list[['events']] <- info_list[['events']] %>%
@@ -121,7 +128,6 @@ display_vessel <- function(id = 'FRA000669307', type = 'cfr') {
 
     cfr_info <- replace(cfr_info, is.na(cfr_info), "")
     cfr_info <- replace(cfr_info, cfr_info == '2100-12-31', "-")
-
 
     table <- cfr_info %>%
              kableExtra::kbl(caption = paste('CFR:', cfr[index_cfr])) %>%
