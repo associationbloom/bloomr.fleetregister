@@ -2,3 +2,4 @@
 .env
 inst/doc
 *.Rproj
+.Rhistory
