@@ -22,7 +22,7 @@
 #' @export
 #'
 get_fleet_repartition <- function(country_iso3 = NULL,
-                                  start_date = '1980-01-01',
+                                  start_date = '2024-01-01',
                                   end_date = Sys.Date(),
                                   size_breaks = c(0, 12, 18, 24, 40, Inf),
                                   categorized = TRUE) {
@@ -86,8 +86,8 @@ get_fleet_repartition <- function(country_iso3 = NULL,
                                       ELSE end_date
                                       END AS tmp_end_date
                                       FROM dimensions d
-                                      WHERE d.start_date < '%s' and type = 'loa' AND  d.end_date >= '%s' AND d.length > 0 AND cfr_id IN (%s))
-                                  ) AS foo)
+                                      WHERE d.start_date < '%s' and type = 'loa' AND  d.end_date >= '%s' AND d.length > 0 AND cfr_id IN (%s)) AS subq1
+                                  ) AS subq2) AS query
                                 WHERE rn = 1", start_date, start_date, end_date, end_date, end_date, start_date, str))
 
 
@@ -103,8 +103,8 @@ get_fleet_repartition <- function(country_iso3 = NULL,
                                       ELSE end_date
                                       END AS tmp_end_date
                                       FROM fishing_gears fg
-                                      WHERE fg.start_date < '%s' AND fg.order = 0 AND fg.end_date >= '%s' AND cfr_id IN (%s))
-                                  ) AS foo)
+                                      WHERE fg.start_date < '%s' AND fg.order = 0 AND fg.end_date >= '%s' AND cfr_id IN (%s)) AS subq1
+                              ) AS subq2) AS query
                                 WHERE rn = 1", start_date, start_date, end_date, end_date, end_date, start_date, str))
 
   DBI::dbDisconnect(conn)
