@@ -1,10 +1,9 @@
-#' Get MMSI information for all vessels
+#' Get MMSI for all vessels
 #'
-#' @return The function returns a dataframe containing the MMSI with dates
+#' @return The function returns a dataframe containing all the MMSI registered associated to CFR ids (found in CFR through `get_cfr`).
 #' @importFrom RPostgres Postgres
 #' @importFrom DBI dbConnect dbGetQuery dbDisconnect
 #' @export
-
 
 get_mmsi <- function() {
   db <- Sys.getenv("POSTGRES_DB")

@@ -1,12 +1,12 @@
-#' Get main fishing gears for all vessels
+#' Get CFR for all vessels
 #'
-#' @return The function returns a dataframe containing main fishing gear (order = 0) records associated to CFR ids (found in CFR through `get_cfr`)
+#' @return The function returns a dataframe containing the CFR with ids.
 #' @importFrom RPostgres Postgres
 #' @importFrom DBI dbConnect dbGetQuery dbDisconnect
 #' @export
 
 
-get_fishing_gears <- function() {
+get_cfr <- function() {
   db <- Sys.getenv("POSTGRES_DB")
   if (db == '') {
     print("Variable POSTGRES_DB not found in .Renviron")
@@ -32,9 +32,7 @@ get_fishing_gears <- function() {
                          user = user,
                          password = pwd)
 
-  res = dbGetQuery(conn, "SELECT fg.cfr_id, fg.gear, fg.start_date, fg.end_date FROM fishing_gears AS fg
-                          WHERE fg.order = 0
-                          ORDER BY fg.start_date DESC")
+  res = dbGetQuery(conn, "SELECT id, cfr FROM cfr")
 
   DBI::dbDisconnect(conn)
 

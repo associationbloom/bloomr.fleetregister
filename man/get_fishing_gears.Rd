@@ -2,13 +2,13 @@
 % Please edit documentation in R/get_fishing_gears.R
 \name{get_fishing_gears}
 \alias{get_fishing_gears}
-\title{Get MMSI information for all vessels}
+\title{Get main fishing gears for all vessels}
 \usage{
 get_fishing_gears()
 }
 \value{
-The function returns a dataframe containing the MMSI with dates
+The function returns a dataframe containing main fishing gear (order = 0) records associated to CFR ids (found in CFR through \code{get_cfr})
 }
 \description{
-Get MMSI information for all vessels
+Get main fishing gears for all vessels
 }

@@ -6,7 +6,7 @@
 \usage{
 get_fleet_repartition(
   country_iso3 = NULL,
-  start_date = "1980-01-01",
+  start_date = "2024-01-01",
   end_date = Sys.Date(),
   size_breaks = c(0, 12, 18, 24, 40, Inf),
   categorized = TRUE
