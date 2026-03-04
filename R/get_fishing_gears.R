@@ -32,8 +32,7 @@ get_fishing_gears <- function() {
                          user = user,
                          password = pwd)
 
-  res = dbGetQuery(conn, "SELECT fg.cfr_id, fg.gear, fg.start_date, fg.end_date FROM fishing_gears AS fg
-                          WHERE fg.order = 0
+  res = dbGetQuery(conn, "SELECT fg.cfr_id, fg.gear, fg.order, fg.start_date, fg.end_date FROM fishing_gears AS fg
                           ORDER BY fg.start_date DESC")
 
   DBI::dbDisconnect(conn)
